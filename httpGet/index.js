@@ -1,5 +1,8 @@
 export default function run(context, request) {
-  context.done(null, {
-    body: "OK"
-  });
+  context.res = {
+    body: JSON.stringify({ status: "OK" }),
+    status: 200
+  };
+
+  context.done(null);
 }
