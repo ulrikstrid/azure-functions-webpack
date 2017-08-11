@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "graphql": {
+      "matchCondition": {
+        "route": "/api/graphql"
+      },
+      "backendUri": "https://<APP_URL>/api/graphql"
+    },
+    "api": {
+      "matchCondition": {
+        "route": "/api/{*path}"
+      },
+      "backendUri": "https://<APP_URL>/api/{path}",
+      "responseOverrides": {
+        "response.headers.Content-Type": "application/json"
+      }
+    },
+    "spa root": {
+      "matchCondition": {
+        "route": "/"
+      },
+      "backendUri": "https://<BLOB_URL>/spa/index.html"
+    },
+    "spa root catch-all": {
+      "matchCondition": {
+        "route": "/{*path}"
+      },
+      "backendUri": "https://<BLOB_URL>/spa/index.html"
+    },
+    "spa static": {
+      "matchCondition": {
+        "route": "/static/{*file}"
+      },
+      "backendUri": "https://<BLOB_URL>/spa/static/{file}"
+    },
+    "spa root static": {
+      "matchCondition": {
+        "route": "/{file}.{ending}"
+      },
+      "backendUri": "https://<BLOB_URL>/spa/{file}.{ending}"
+    }
+  }
+}
